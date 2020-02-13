@@ -1,4 +1,5 @@
 using API.Infra;
+using API.Midllewares;
 using AutoMapper;
 using FluentValidation.AspNetCore;
 using MediatR;
@@ -31,6 +32,8 @@ namespace API
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseMiddleware<ErrorHandlingMiddleware>();
+
             app.UseRouting();
 
             app.UseAuthorization();
