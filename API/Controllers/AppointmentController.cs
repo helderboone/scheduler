@@ -16,6 +16,12 @@ namespace API.Controllers
             _mediator = mediator;
         }
 
+        [HttpGet("{id}")]
+        public async Task<ActionResult<AppointmentDto>> Details(int id)
+        {
+            return await _mediator.Send(new Details.Query { Id = id });
+        }
+
         [HttpPost]
         public async Task<ActionResult<Unit>> Create(Create.Command command)
         {

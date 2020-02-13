@@ -8,6 +8,7 @@ namespace API.Features.Appointment
         {
             CreateMap<Create.Command, Models.Appointment>().ReverseMap();
             CreateMap<Edit.Command, Models.Appointment>().ReverseMap();
+            CreateMap<Models.Appointment, AppointmentDto>().ReverseMap();
         }
     }
 }
