@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Linq.Expressions;
 
 namespace API.Models
 {
-    public class Appointment
+    public partial class Appointment
     {
         public int Id { get; set; }
 
@@ -15,5 +16,13 @@ namespace API.Models
         public DateTime EndDate { get; set; }
 
         public string Observations { get; set; }
+    }
+
+    public partial class Appointment
+    {
+        public static Expression<Func<Appointment, bool>> SameRangeTime(DateTime startDate, DateTime endDate)
+        {
+             return a => a.StartDate >= startDate || a.EndDate <= endDate;
+        }
     }
 }
