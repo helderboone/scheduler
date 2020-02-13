@@ -7,6 +7,7 @@ namespace API.Features.Appointment
         public MappingProfile()
         {
             CreateMap<Create.Command, Models.Appointment>().ReverseMap();
+            CreateMap<Edit.Command, Models.Appointment>().ReverseMap();
         }
     }
 }
