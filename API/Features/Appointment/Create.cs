@@ -15,6 +15,8 @@ namespace API.Features.Appointment
     {
         public class Command : IRequest
         {
+            public int Id { get; set; }
+
             public string PatientName { get; set; }
 
             public DateTime? PatientBirthdate { get; set; }
