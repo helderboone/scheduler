@@ -1,6 +1,8 @@
 ﻿using API.Features.Appointment;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace API.Controllers
@@ -14,6 +16,12 @@ namespace API.Controllers
         public AppointmentController(IMediator mediator)
         {
             _mediator = mediator;
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<List<AppointmentDto>>> List(DateTime? date)
+        {
+            return await _mediator.Send(new List.Query { Date = date });
         }
 
         [HttpGet("{id}")]
