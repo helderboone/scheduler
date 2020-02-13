@@ -22,7 +22,8 @@ namespace API.Models
     {
         public static Expression<Func<Appointment, bool>> SameRangeTime(DateTime startDate, DateTime endDate)
         {
-             return a => a.StartDate >= startDate || a.EndDate <= endDate;
+            return a => (startDate >= a.StartDate && startDate <= a.EndDate) ||
+                        (endDate >= a.StartDate && endDate <= a.EndDate);
         }
     }
 }
