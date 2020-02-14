@@ -23,6 +23,7 @@ namespace API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers().AddFluentValidation(cfg => cfg.RegisterValidatorsFromAssemblyContaining<Startup>());
+            services.AddCors();
 
             services.AddMediatR(typeof(Startup).Assembly);
             services.AddAutoMapper(typeof(Startup));
@@ -37,6 +38,8 @@ namespace API
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
             app.UseEndpoints(endpoints =>
             {
