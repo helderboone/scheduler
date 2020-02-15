@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
 import { AppointmentsService } from '../appointments.service';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-appointment-add',
@@ -10,7 +11,7 @@ import { AppointmentsService } from '../appointments.service';
 export class AppointmentAddComponent implements OnInit {
 
   angForm: FormGroup;
-  constructor(private fb: FormBuilder, private appointmentService: AppointmentsService) {
+  constructor(private fb: FormBuilder, private appointmentService: AppointmentsService, private router: Router) {
     this.createForm();
   }
 
@@ -24,7 +25,17 @@ export class AppointmentAddComponent implements OnInit {
   }
 
   addAppointment(PatientName, PatientBirthdate, StartDate, EndDate, Observations) {
-    this.appointmentService.addAppointment(PatientName, PatientBirthdate, StartDate, EndDate, Observations);
+    this.appointmentService.addAppointment(PatientName, PatientBirthdate, StartDate, EndDate, Observations).subscribe(() => {
+      this.router.navigate(['/appointments']);
+    }, error => {
+      console.log(error);
+    });;
+  }
+
+  onSubmit() {
+    if(this.angForm.valid) {
+      this.angForm.reset();
+    }
   }
 
   ngOnInit(): void {

@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-body">
-      <form [formGroup]="angForm" novalidate>
+      <form [formGroup]="angForm" novalidate (ngSubmit) = "onSubmit()">
         <div class="form-group">
           <label class="col-md-4">Patient Name</label>
           <input type="text" class="form-control"

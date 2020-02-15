@@ -18,8 +18,7 @@ export class AppointmentsService {
       EndDate,
       Observations
     };
-    console.log(obj);
-    this.http.post(`${this.uri}`, obj).subscribe(res => console.log('Done'));
+    return this.http.post(`${this.uri}`, obj);
   }
 
   getAppointments() {
