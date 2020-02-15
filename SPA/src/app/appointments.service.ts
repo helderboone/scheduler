@@ -23,8 +23,26 @@ export class AppointmentsService {
   }
 
   getAppointments() {
-    return this
-           .http
+    return this.http
            .get(`${this.uri}`);
+  }
+
+  editAppointment(id) {
+    console.log(`${this.uri}${id}`)
+    return this.http
+            .get(`${this.uri}${id}`);
+    }
+
+    updateAppointment(PatientName, PatientBirthdate, StartDate, EndDate, Observations, id) {
+      const model = {
+        PatientName,
+        PatientBirthdate,
+        StartDate,
+        EndDate,
+        Observations
+      };
+      this.http
+        .put(`${this.uri}${id}`, model)
+        .subscribe(res => console.log('Done'));
   }
 }

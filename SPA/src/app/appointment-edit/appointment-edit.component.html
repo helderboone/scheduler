@@ -1,1 +1,71 @@
-<p>appointment-edit works!</p>
+<div class="card">
+  <div class="card-body">
+    <form [formGroup]="angForm" novalidate>
+      <div class="form-group">
+        <label class="col-md-4">Patient Name</label>
+        <input type="text" class="form-control"
+          formControlName="PatientName"
+          #PatientName
+          [(ngModel)] = "appointment.patientName"/>
+      </div>
+      <div *ngIf="angForm.controls['PatientName'].invalid && (angForm.controls['PatientName'].dirty || angForm.controls['PatientName'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['PatientName'].errors.required">
+          PatientName Name is required.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-4">Patient Birthdate</label>
+        <input type="text" class="form-control"
+          formControlName="PatientBirthdate"
+          #PatientBirthdate
+          [(ngModel)] = "appointment.patientBirthdate"/>
+      </div>
+      <div *ngIf="angForm.controls['PatientBirthdate'].invalid && (angForm.controls['PatientBirthdate'].dirty || angForm.controls['PatientBirthdate'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['PatientBirthdate'].errors.required">
+          Patient Birthdate.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-4">Start Date</label>
+        <input type="text" class="form-control"
+          formControlName="StartDate"
+          #StartDate
+          [(ngModel)] = "appointment.startDate"/>
+      </div>
+      <div *ngIf="angForm.controls['StartDate'].invalid && (angForm.controls['StartDate'].dirty || angForm.controls['StartDate'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['StartDate'].errors.required">
+          Start Date.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-4">End Date</label>
+        <input type="text" class="form-control"
+          formControlName="EndDate"
+          #EndDate
+          [(ngModel)] = "appointment.endDate"/>
+      </div>
+      <div *ngIf="angForm.controls['EndDate'].invalid && (angForm.controls['EndDate'].dirty || angForm.controls['EndDate'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['EndDate'].errors.required">
+          End Date.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-4">Observations</label>
+        <textarea class="form-control" rows = 5 cols = "5"
+        formControlName="Observations"
+        #Observations [(ngModel)] = "appointment.observations"></textarea>
+      </div>
+
+      <div class="form-group">
+        <button (click) = "updateAppointment(PatientName.value, PatientBirthdate.value, StartDate.value, EndDate.value, Observations.value)" type="submit" class="btn btn-primary"
+        [disabled]="angForm.invalid" >
+          Update Appointment
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
