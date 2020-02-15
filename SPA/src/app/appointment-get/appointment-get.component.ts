@@ -21,4 +21,10 @@ export class AppointmentGetComponent implements OnInit {
         console.log(this.appointments);
     });
   }
+
+  deleteAppointment(id) {
+    this.appointmentService.deleteAppointment(id).subscribe(res => {
+      this.appointments.splice(id, 1);
+    });
+  }
 }

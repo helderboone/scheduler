@@ -45,4 +45,9 @@ export class AppointmentsService {
         .put(`${this.uri}${id}`, model)
         .subscribe(res => console.log('Done'));
   }
+
+  deleteAppointment(id) {
+    return this.http
+              .delete(`${this.uri}${id}`);
+  }
 }

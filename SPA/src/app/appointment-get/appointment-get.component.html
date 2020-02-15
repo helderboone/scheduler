@@ -16,7 +16,7 @@
           <td>{{ appointment.startDate }}</td>
           <td>{{ appointment.endDate }}</td>
           <td><a [routerLink]="['/edit', appointment.id]" class="btn btn-primary">Edit</a></td>
-          <td><a [routerLink]="" class="btn btn-danger">Delete</a></td>
+          <td><a (click) = "deleteAppointment(appointment.id)" class="btn btn-danger">Delete</a>
       </tr>
   </tbody>
 </table>

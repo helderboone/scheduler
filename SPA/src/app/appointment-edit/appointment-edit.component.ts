@@ -23,8 +23,7 @@ export class AppointmentEditComponent implements OnInit {
       PatientName: ['', Validators.required ],
       PatientBirthdate: ['', Validators.required ],
       StartDate: ['', Validators.required ],
-      EndDate: ['', Validators.required ],
-      Observations: ['', Validators.required ],
+      EndDate: ['', Validators.required ]
     });
   }
 
