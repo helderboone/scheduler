@@ -16,6 +16,10 @@ const routes: Routes = [
   {
     path: 'appointments',
     component: AppointmentGetComponent
+  },
+  { path: '',
+    redirectTo: '/appointments',
+    pathMatch: 'full'
   }
 ];
 
