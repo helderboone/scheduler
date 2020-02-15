@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule} from 'ngx-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,7 +25,13 @@ import { AppointmentsService } from './appointments.service';
     AppRoutingModule,
     SlimLoadingBarModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 1700,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true
+    })
   ],
   providers: [AppointmentsService],
   bootstrap: [AppComponent]
