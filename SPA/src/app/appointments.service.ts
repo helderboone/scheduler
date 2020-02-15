@@ -21,4 +21,10 @@ export class AppointmentsService {
     console.log(obj);
     this.http.post(`${this.uri}`, obj).subscribe(res => console.log('Done'));
   }
+
+  getAppointments() {
+    return this
+           .http
+           .get(`${this.uri}`);
+  }
 }
