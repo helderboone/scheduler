@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppointmentsService } from '../appointments.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-appointment-edit',
@@ -14,7 +15,7 @@ export class AppointmentEditComponent implements OnInit {
   appointment: any = {};
 
   constructor(private route: ActivatedRoute, private router: Router,
-    private appointmentsService: AppointmentsService, private fb: FormBuilder) {
+    private appointmentsService: AppointmentsService, private fb: FormBuilder, private toastr: ToastrService) {
       this.createForm();
     }
 
@@ -38,8 +39,12 @@ export class AppointmentEditComponent implements OnInit {
 
   updateAppointment(PatientName, PatientBirthdate, StartDate, EndDate, Observations) {
     this.route.params.subscribe(params => {
-      this.appointmentsService.updateAppointment(PatientName, PatientBirthdate, StartDate, EndDate, Observations, params.id);
-      this.router.navigate(['appointments']);
+      this.appointmentsService.updateAppointment(PatientName, PatientBirthdate, StartDate, EndDate, Observations, params.id).subscribe(() => {
+        this.router.navigate(['/appointments']);
+        this.toastr.success('Appointment updated successfully', 'Success')
+      }, error => {
+        console.log(error);
+      });;
     });
   }
 }

@@ -32,7 +32,7 @@ export class AppointmentAddComponent implements OnInit {
       this.toastr.success('Appointment created successfully', 'Success')
     }, error => {
       console.log(error);
-    });;
+    });
   }
 
   onSubmit() {

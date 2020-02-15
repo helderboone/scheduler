@@ -32,6 +32,7 @@ export class AppointmentsService {
             .get(`${this.uri}${id}`);
     }
 
+    //TODO insert return on this.http.....
     updateAppointment(PatientName, PatientBirthdate, StartDate, EndDate, Observations, id) {
       const model = {
         PatientName,
@@ -40,9 +41,9 @@ export class AppointmentsService {
         EndDate,
         Observations
       };
-      this.http
-        .put(`${this.uri}${id}`, model)
-        .subscribe(res => console.log('Done'));
+      return this.http
+        .put(`${this.uri}${id}`, model);
+
   }
 
   deleteAppointment(id) {
