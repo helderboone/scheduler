@@ -25,6 +25,7 @@ export class AppointmentGetComponent implements OnInit {
   deleteAppointment(id) {
     this.appointmentService.deleteAppointment(id).subscribe(res => {
       this.appointments.splice(id, 1);
+      this.ngOnInit();
     });
   }
 }
