@@ -9,15 +9,16 @@ export class AppointmentsService {
   uri = 'http://localhost:5000/api/appointment/';
 
   constructor(private http: HttpClient) { }
-  
-  addAppointment(PatientName, Observations) {
+
+  addAppointment(PatientName, PatientBirthdate, StartDate, EndDate, Observations) {
     const obj = {
       PatientName,
+      PatientBirthdate,
+      StartDate,
+      EndDate,
       Observations
     };
     console.log(obj);
-    this.http.post(`${this.uri}`, obj)
-        .subscribe(res => console.log('Done'));
+    this.http.post(`${this.uri}`, obj).subscribe(res => console.log('Done'));
   }
-
 }

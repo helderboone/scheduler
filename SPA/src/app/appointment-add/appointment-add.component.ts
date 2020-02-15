@@ -17,12 +17,15 @@ export class AppointmentAddComponent implements OnInit {
   createForm() {
     this.angForm = this.fb.group({
       PatientName: ['', Validators.required ],
+      PatientBirthdate: ['', Validators.required ],
+      StartDate: ['', Validators.required ],
+      EndDate: ['', Validators.required ],
       Observations: ['', Validators.required ],
     });
   }
 
-  addAppointment(PatientName, Observations) {
-    this.appointmentService.addAppointment(PatientName, Observations);
+  addAppointment(PatientName, PatientBirthdate, StartDate, EndDate, Observations) {
+    this.appointmentService.addAppointment(PatientName, PatientBirthdate, StartDate, EndDate, Observations);
   }
 
   ngOnInit(): void {
