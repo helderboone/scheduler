@@ -19,6 +19,14 @@
               formControlName="PatientBirthdate"
               #PatientBirthdate />
           </div>
+
+          <div class="form-group">
+            <label class="col-md-4">Patient BirthDate</label>
+            <input type="text" class="form-control mb-3" placeholder="Birthdate" bsDatepicker [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY HH:MM' }" formControlName="PatientBirthdate" #PatientBirthdate />
+            <!-- <input type="text" placeholder="Datepicker" class="form-control" bsDatepicker > -->
+              <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+          </div>
+
           <div *ngIf="angForm.controls['PatientBirthdate'].invalid && (angForm.controls['PatientBirthdate'].dirty || angForm.controls['PatientBirthdate'].touched)" class="alert alert-danger">
             <div *ngIf="angForm.controls['PatientBirthdate'].errors.required">
               Patient Birthdate is required.
