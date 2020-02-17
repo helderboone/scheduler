@@ -51,6 +51,9 @@ namespace API.Features.Appointment
 
             public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
             {
+                if(request.EndDate < request.StartDate)
+                    throw new RestException(HttpStatusCode.BadRequest, "End date must be greater than Start date");
+                    
                 var appointment = await _context.Appointments.FindAsync(request.Id);
 
                 if (appointment == null)

@@ -53,6 +53,9 @@ namespace API.Features.Appointment
 
             public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
             {
+                if(request.EndDate < request.StartDate)
+                    throw new RestException(HttpStatusCode.BadRequest, "End date must be greater than Start date");
+
                 var appointment = _mapper.Map<Command, Models.Appointment>(request);
 
                 if(_context.Appointments.Any(Models.Appointment.SameRangeTime(request.StartDate.Value, request.EndDate.Value)))
