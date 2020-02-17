@@ -31,14 +31,12 @@ export class AppointmentAddComponent implements OnInit {
       this.router.navigate(['/appointments']);
       this.toastr.success('Appointment created successfully', 'Success');
     }, error => {
-      console.log(error);
+      this.toastr.error(error.error, 'Error');
     });
   }
 
   onSubmit() {
-    if(this.angForm.valid) {
-      this.angForm.reset();
-    }
+    
   }
 
   ngOnInit(): void {
