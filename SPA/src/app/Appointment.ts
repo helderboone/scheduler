@@ -1,8 +1,8 @@
-export default class Product {
-    Id: number;
-    PatientName: string;
-    PatientBirthdate: Date;
-    StartDate: Date;
-    EndDate: Date;
-    Observations: string;
+export default class Appointment {
+    id: number;
+    patientName: string;
+    patientBirthdate: Date;
+    startDate: Date;
+    endDate: Date;
+    observations: string;
   }
