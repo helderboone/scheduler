@@ -15,16 +15,7 @@
 
           <div class="form-group">
             <label class="col-md-4">Patient BirthDate</label>
-            <input type="datetime" class="form-control"
-              formControlName="PatientBirthdate"
-              #PatientBirthdate />
-          </div>
-
-          <div class="form-group">
-            <label class="col-md-4">Patient BirthDate</label>
-            <input type="text" class="form-control mb-3" placeholder="Birthdate" bsDatepicker [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY HH:MM' }" formControlName="PatientBirthdate" #PatientBirthdate />
-            <!-- <input type="text" placeholder="Datepicker" class="form-control" bsDatepicker > -->
-              <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+            <input type="datetime" class="form-control" formControlName="PatientBirthdate" #PatientBirthdate type="date"/>
           </div>
 
           <div *ngIf="angForm.controls['PatientBirthdate'].invalid && (angForm.controls['PatientBirthdate'].dirty || angForm.controls['PatientBirthdate'].touched)" class="alert alert-danger">
@@ -35,9 +26,7 @@
 
           <div class="form-group">
             <label class="col-md-4">Start Date</label>
-            <input type="datetime" class="form-control"
-              formControlName="StartDate"
-              #StartDate />
+            <input type="datetime" class="form-control" formControlName="StartDate" #StartDate type="datetime-local" />
           </div>
 
           <div *ngIf="angForm.controls['StartDate'].invalid && (angForm.controls['StartDate'].dirty || angForm.controls['StartDate'].touched)" class="alert alert-danger">
@@ -48,9 +37,7 @@
 
           <div class="form-group">
             <label class="col-md-4">End Date</label>
-            <input type="datetime" class="form-control"
-              formControlName="EndDate"
-              #EndDate />
+            <input type="datetime" class="form-control" formControlName="EndDate" #EndDate type="datetime-local" />
           </div>
 
           <div *ngIf="angForm.controls['EndDate'].invalid && (angForm.controls['EndDate'].dirty || angForm.controls['EndDate'].touched)" class="alert alert-danger">

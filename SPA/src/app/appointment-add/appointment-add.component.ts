@@ -26,10 +26,10 @@ export class AppointmentAddComponent implements OnInit {
     });
   }
 
-  addAppointment(PatientName, PatientBirthdate, StartDate, EndDate, Observations) {
+  addAppointment(PatientName, PatientBirthdate, StartDate, EndDate, Observations) {    
     this.appointmentService.addAppointment(PatientName, PatientBirthdate, StartDate, EndDate, Observations).subscribe(() => {
       this.router.navigate(['/appointments']);
-      this.toastr.success('Appointment created successfully', 'Success')
+      this.toastr.success('Appointment created successfully', 'Success');
     }, error => {
       console.log(error);
     });
