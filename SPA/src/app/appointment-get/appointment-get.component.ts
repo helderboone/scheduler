@@ -18,6 +18,11 @@ export class AppointmentGetComponent implements OnInit {
       .getAppointments()
       .subscribe((data: Appointment[]) => {
         this.appointments = data;
+        this.appointments.forEach(appointment => {
+          appointment.patientBirthdate = this.formatDate(appointment.patientBirthdate);
+          appointment.startDate = this.formatDateWithTime(appointment.startDate);
+          appointment.endDate = this.formatDateWithTime(appointment.endDate);
+        });
         console.log(this.appointments);
     });
   }
@@ -27,5 +32,23 @@ export class AppointmentGetComponent implements OnInit {
       this.appointments.splice(id, 1);
       this.ngOnInit();
     });
+  }
+
+  formatDate(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+
+    return [day, month, year].join('/');
+  }
+
+  formatDateWithTime(date) {
+    const time = date.split('T')[1];
+    const dateFormatted = this.formatDate(date);
+    return dateFormatted + ' ' + time;    
   }
 }
