@@ -58,8 +58,10 @@ namespace API.Features.Appointment
                 
                 var appointmentUpdate = _mapper.Map(request, appointment);
 
-                if (_context.Appointments.Any(Models.Appointment.SameRangeTime(request.StartDate.Value, request.EndDate.Value)))
-                    throw new RestException(HttpStatusCode.BadRequest, new { Appointment = "Appointment already scheduled at this time" });
+                var appointmentSameRange = _context.Appointments.Where(Models.Appointment.SameRangeTime(request.StartDate.Value, request.EndDate.Value)).FirstOrDefault();
+
+                if(appointmentSameRange != null && appointmentSameRange.Id != appointment.Id)
+                    throw new RestException(HttpStatusCode.BadRequest, "Appointment already scheduled at this time");
 
                 _context.Appointments.Update(appointmentUpdate);
 
