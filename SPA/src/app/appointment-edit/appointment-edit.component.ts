@@ -12,8 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 export class AppointmentEditComponent implements OnInit {
 
   angForm: FormGroup;
-  appointment: any = {};
-
+  appointment: any = {};  
   constructor(private route: ActivatedRoute, private router: Router,
     private appointmentsService: AppointmentsService, private fb: FormBuilder, private toastr: ToastrService) {
       this.createForm();
@@ -33,6 +32,7 @@ export class AppointmentEditComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.appointmentsService.editAppointment(params['id']).subscribe(res => {
         this.appointment = res;
+        this.appointment.patientBirthdate = this.formatDate(this.appointment.patientBirthdate);
       });
     });
   }
@@ -41,10 +41,22 @@ export class AppointmentEditComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.appointmentsService.updateAppointment(PatientName, PatientBirthdate, StartDate, EndDate, Observations, params.id).subscribe(() => {
         this.router.navigate(['/appointments']);
-        this.toastr.success('Appointment updated successfully', 'Success')
+        this.toastr.success('Appointment updated successfully', 'Success');
       }, error => {
-        console.log(error);
-      });;
+        this.toastr.error(error.error, 'Error');
+      });
     });
   }
+  
+  formatDate(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+
+    return [year, month, day].join('-');
+  }  
 }

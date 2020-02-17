@@ -17,9 +17,7 @@
       <div class="form-group">
         <label class="col-md-4">Patient Birthdate</label>
         <input type="text" class="form-control"
-          formControlName="PatientBirthdate"
-          #PatientBirthdate
-          [(ngModel)] = "appointment.patientBirthdate"/>
+          formControlName="PatientBirthdate" #PatientBirthdate [(ngModel)] = "appointment.patientBirthdate" type="date"/>
       </div>
       <div *ngIf="angForm.controls['PatientBirthdate'].invalid && (angForm.controls['PatientBirthdate'].dirty || angForm.controls['PatientBirthdate'].touched)" class="alert alert-danger">
         <div *ngIf="angForm.controls['PatientBirthdate'].errors.required">
@@ -30,9 +28,7 @@
       <div class="form-group">
         <label class="col-md-4">Start Date</label>
         <input type="text" class="form-control"
-          formControlName="StartDate"
-          #StartDate
-          [(ngModel)] = "appointment.startDate"/>
+          formControlName="StartDate"  #StartDate [(ngModel)] = "appointment.startDate" type="datetime-local"/>
       </div>
       <div *ngIf="angForm.controls['StartDate'].invalid && (angForm.controls['StartDate'].dirty || angForm.controls['StartDate'].touched)" class="alert alert-danger">
         <div *ngIf="angForm.controls['StartDate'].errors.required">
@@ -42,10 +38,7 @@
 
       <div class="form-group">
         <label class="col-md-4">End Date</label>
-        <input type="text" class="form-control"
-          formControlName="EndDate"
-          #EndDate
-          [(ngModel)] = "appointment.endDate"/>
+        <input type="text" class="form-control"  formControlName="EndDate" #EndDate [(ngModel)] = "appointment.endDate" type="datetime-local"/>
       </div>
       <div *ngIf="angForm.controls['EndDate'].invalid && (angForm.controls['EndDate'].dirty || angForm.controls['EndDate'].touched)" class="alert alert-danger">
         <div *ngIf="angForm.controls['EndDate'].errors.required">
