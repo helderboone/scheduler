@@ -142,7 +142,7 @@ namespace Test
         }
 
         [Fact]
-        public async Task Should_Not_Delete_And_Return_BadRequest401()
+        public async Task Should_Not_Delete_And_Return_NotFound401()
         {
             var command = new Create.Command
             {
