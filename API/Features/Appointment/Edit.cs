@@ -33,7 +33,7 @@ namespace API.Features.Appointment
             public CommandValidator()
             {
                 RuleFor(x => x.StartDate).NotNull();
-                RuleFor(x => x.EndDate).NotNull().GreaterThan(x => x.StartDate);
+                RuleFor(x => x.EndDate).NotNull();
                 RuleFor(x => x.Observations).MaximumLength(100);
             }
         }
