@@ -29,7 +29,7 @@ namespace API.Features.Appointment
                 var appointment = await _context.Appointments.FindAsync(request.Id);
 
                 if (appointment == null)
-                    throw new RestException(HttpStatusCode.NotFound, new { appointment = "Could not find activity" });
+                    throw new RestException(HttpStatusCode.NotFound, "Could not find appointment");
 
                 _context.Remove(appointment);
 
