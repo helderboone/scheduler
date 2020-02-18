@@ -30,8 +30,9 @@ import { AppointmentsService } from './appointments.service';
     BrowserAnimationsModule,
     BsDatepickerModule.forRoot(),
     ToastrModule.forRoot({
-      timeOut: 1700,
+      timeOut: 2500,
       positionClass: 'toast-top-right',
+      progressBar: true,
       preventDuplicates: true
     })
   ],
