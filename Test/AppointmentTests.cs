@@ -90,6 +90,24 @@ namespace Test
         }
 
         [Fact]
+        public async Task Should_Not_Create_EndDate_Smaller_StartDate_And_Return_BadRequest400()
+        {
+            var command = new Create.Command
+            {
+                Id = 1,
+                PatientName = "Joao Teste",
+                PatientBirthdate = DateTime.Now.AddYears(-20),
+                StartDate = new DateTime(2020, 03, 01, 09, 00, 00),
+                EndDate = new DateTime(2020, 03, 01, 08, 00, 00),
+                Observations = string.Empty,
+            };
+
+            var ex = await Assert.ThrowsAsync<RestException>(() => _mediator.Send(command));
+
+            Assert.Equal(HttpStatusCode.BadRequest, ex.Code);
+        }
+
+        [Fact]
         public async Task Should_Get_All()
         {
             var query = new List.Query { Date = null };
@@ -121,6 +139,28 @@ namespace Test
             var actual = await _mediator.Send(commandDelete);
 
             Assert.Equal(Unit.Value, actual);
+        }
+
+        [Fact]
+        public async Task Should_Not_Delete_And_Return_BadRequest401()
+        {
+            var command = new Create.Command
+            {
+                Id = 1,
+                PatientName = "Joao",
+                PatientBirthdate = DateTime.Now.AddYears(-30),
+                StartDate = new DateTime(2020, 03, 01, 09, 00, 00),
+                EndDate = new DateTime(2020, 03, 01, 10, 00, 00),
+                Observations = string.Empty,
+            };
+
+            await _mediator.Send(command);
+
+            var commandDelete = new Delete.Command { Id = 2 };
+
+            var ex = await Assert.ThrowsAsync<RestException>(() => _mediator.Send(commandDelete));
+
+            Assert.Equal(HttpStatusCode.NotFound, ex.Code);            
         }
     }
 }
