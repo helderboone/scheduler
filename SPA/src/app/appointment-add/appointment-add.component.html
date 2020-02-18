@@ -53,10 +53,15 @@
             #Observations></textarea>
           </div>
           <div class="form-group">
-            <button (click) = "addAppointment(PatientName.value, PatientBirthdate.value, StartDate.value, EndDate.value, Observations.value)" type="submit" class="btn btn-primary"
-            [disabled]="angForm.pristine || angForm.invalid" >
+            <button (click) = "addAppointment(PatientName.value, PatientBirthdate.value, StartDate.value, EndDate.value, Observations.value)" type="submit"
+            class="btn btn-primary float-right" [disabled]="angForm.pristine || angForm.invalid" >
+              <i class="fa fa-plus-circle fa-lg"></i>
               Create Appointment
             </button>
+            <a routerLink="/appointments" class="btn btn-light float-right mr-2 text-muted" routerLinkActive="active">
+              <i class="fa fa-arrow-circle-left" ></i>
+              Cancel
+            </a>
           </div>
       </form>
     </div>
